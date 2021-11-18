@@ -1,7 +1,6 @@
 package leetcode;
 
 public class Leetcode_10 {
-    class Solution {
         public boolean isMatch(String s, String p) {
             int m = s.length();
             int n = p.length();
@@ -34,5 +33,4 @@ public class Leetcode_10 {
             }
             return s.charAt(i - 1) == p.charAt(j - 1);
         }
-    }
 }
