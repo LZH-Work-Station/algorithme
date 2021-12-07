@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Leetcode_30 {
     public List<Integer> findSubstring(String s, String[] words) {
+        // 比较HashMap是否相同就可以了
         List<Integer> list = new ArrayList<>();
         Map<String, Integer> model = new HashMap<>();
         for(String m : words){

@@ -6,23 +6,33 @@ public class Leetcode_29 {
     //剩下5，我们计算5是3的几倍，也就是除法
 
     public int divide(int dividend, int divisor) {
-        int sign = 0;
-        if((dividend>0&&divisor<0) || (dividend<0&&divisor>0)){
-            sign = -1;
+        // 当除数为1，直接返回被除数
+        if (divisor == 1) {
+            return dividend;
         }
-        int res = close(Math.abs(dividend), Math.abs(divisor));
-        if(sign == -1) return -res;
-        else return res;
-    }
+        // 当除数为-1且被除数为Integer.MIN_VALUE时，将会溢出，返回Integer.MAX_VALUE
+        if (divisor == -1 && dividend == Integer.MIN_VALUE) {
+            return Integer.MAX_VALUE;
+        }
 
-    public int close(int dividend, int divisor){
-        if(dividend < divisor) return 0;
+        // 把被除数与除数调整为正数,为防止被除数Integer.MIN_VALUE转换为正数会溢出，使用long类型保存参数
+        if (dividend < 0 && divisor < 0) {
+            return divide(-(long) dividend, -(long) divisor);
+        } else if (dividend < 0 || divisor < 0) {
+            return -divide(Math.abs((long) dividend), Math.abs((long) divisor));
+        } else {
+            return divide((long) dividend, (long) divisor);
+        }
+
+    }
+    public int divide(long dividend, long divisor) {
+        if (dividend < divisor) return 0;
         int count = 1;
-        int tmp = divisor;
-        while(dividend >= (tmp + tmp)){
+        long tmp = divisor;
+        while (dividend >= (tmp + tmp)) {
             count <<= 1;
             tmp <<= 1;
         }
-        return count + close(dividend - tmp, divisor);
+        return count + divide(dividend - tmp, divisor);
     }
 }
