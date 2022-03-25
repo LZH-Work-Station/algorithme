@@ -1,13 +1,14 @@
 package solution;
 
-import leetcode.Leetcode_30;
+import leetcode.Debug;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class Solution {
     public static void main(String[] args) {
-        Leetcode_30 leetcode_30 = new Leetcode_30();
-        List<Integer> babad = leetcode_30.findSubstring("barfoothefoobarman", new String[]{"foo","bar"});
-        System.out.println(babad);
+        int[] t = new int[]{73,74,75,71,69,72,76,73};
+        Debug debug = new Debug();
+
+        System.out.println(Arrays.toString(debug.dailyTemperatures(t)));
     }
 }
